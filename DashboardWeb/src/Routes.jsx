@@ -3,6 +3,7 @@ import Login from "./Login/Login";
 import Cadastro from "./Login/cadastro";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Dashboard from "./pages/Dashboard";
 
 export default function Rotas() {
     return (
@@ -21,6 +22,7 @@ export default function Rotas() {
              
             <Route path="/" element={<Cadastro />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/dashboard" element={<Dashboard/>}/>
 
         </Routes>
         </>

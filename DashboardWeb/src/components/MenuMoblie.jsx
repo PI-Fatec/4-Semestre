@@ -1,0 +1,74 @@
+import { useState } from "react";
+import { Link } from "react-router";
+import { FiMenu, FiX, FiLogOut } from "react-icons/fi";
+
+const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [selectedUser] = useState(() => {
+    const userData = localStorage.getItem('userData');
+    try {
+      return userData ? JSON.parse(userData) : { fullName: 'Usuário' };
+    } catch (error) {
+      console.error('Erro ao ler userdata:', error);
+      return { fullName: 'Usuário' };
+    }
+  });
+
+  const handleLogout = () => {
+    localStorage.removeItem('userdata');
+    window.location.href = '/login';
+  };
+
+  return (
+    <nav className="md:hidden fixed top-0 w-full bg-gray-800 text-white z-50">
+      <div className="flex justify-between items-center p-4">
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="text-2xl p-2 hover:bg-gray-700 rounded"
+        >
+          {isMenuOpen ? <FiX /> : <FiMenu />}
+        </button>
+
+        <span className="text-xl font-semibold">Dashboard</span>
+
+        <div className="w-10 h-10 bg-gray-500 rounded-full flex items-center justify-center text-sm">
+          {selectedUser.fullName
+            .split(" ")
+            .map((n) => n[0])
+            .join("")
+            .toUpperCase()}
+        </div>
+      </div>
+
+      {/* Menu dropdown */}
+      {isMenuOpen && (
+        <div className="absolute top-full w-full bg-gray-800 shadow-lg">
+          <div className="p-4 border-t border-gray-700">
+            <div className="mb-4 text-center">
+              <p className="font-medium">{selectedUser.fullName}</p>
+              <p className="text-sm text-gray-400">{selectedUser.email}</p>
+            </div>
+
+            <Link 
+              to="/settings" 
+              className="block p-3 hover:bg-gray-700 rounded"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Configurações
+            </Link>
+
+            <button
+              onClick={handleLogout}
+              className="w-full flex items-center gap-2 p-3 hover:bg-gray-700 rounded text-red-400"
+            >
+              <FiLogOut className="text-lg" />
+              <span>Logout</span>
+            </button>
+          </div>
+        </div>
+      )}
+    </nav>
+  );
+};
+
+export default Navbar;
