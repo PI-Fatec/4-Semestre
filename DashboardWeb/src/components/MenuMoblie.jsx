@@ -1,22 +1,25 @@
 import { useState } from "react";
 import { Link } from "react-router";
 import { FiMenu, FiX, FiLogOut } from "react-icons/fi";
+import { IoIosSettings } from "react-icons/io";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedUser] = useState(() => {
-    const userData = localStorage.getItem('userData');
+    const userData = localStorage.getItem("userData");
     try {
-      return userData ? JSON.parse(userData) : { fullName: 'Usuário' };
+      return userData ? JSON.parse(userData) : { fullName: "Usuário" };
     } catch (error) {
-      console.error('Erro ao ler userdata:', error);
-      return { fullName: 'Usuário' };
+      console.error("Erro ao ler userdata:", error);
+      return { fullName: "Usuário" };
     }
   });
 
   const handleLogout = () => {
-    localStorage.removeItem('userdata');
-    window.location.href = '/login';
+    localStorage.removeItem("userData");
+    localStorage.removeItem("authToken");
+
+    window.location.href = "/login";
   };
 
   return (
@@ -40,7 +43,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Menu dropdown */}
       {isMenuOpen && (
         <div className="absolute top-full w-full bg-gray-800 shadow-lg">
           <div className="p-4 border-t border-gray-700">
@@ -49,12 +51,13 @@ const Navbar = () => {
               <p className="text-sm text-gray-400">{selectedUser.email}</p>
             </div>
 
-            <Link 
-              to="/settings" 
-              className="block p-3 hover:bg-gray-700 rounded"
+            <Link
+              to="/configuser"
+              className=" p-3 hover:bg-gray-700 rounded flex items-center gap-2"
               onClick={() => setIsMenuOpen(false)}
             >
-              Configurações
+              <IoIosSettings className="text-white" />
+              <p className="text-white">Configurações</p>
             </Link>
 
             <button

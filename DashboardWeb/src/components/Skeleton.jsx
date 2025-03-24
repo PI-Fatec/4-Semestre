@@ -28,7 +28,6 @@ export function DashboardSkeleton() {
           </div>
         </div>
   
-        {/* Seção adicional (se houver) */}
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="h-32 bg-gray-200 rounded-lg"></div>
           <div className="h-32 bg-gray-200 rounded-lg"></div>
