@@ -59,7 +59,7 @@ export default function Cadastro() {
   return (
     <div className="login-container">
       <div className="left-panel ">
-        <h2 className="text-4xl text-center">Bem vindo ao dashboard do P.I</h2>
+        <h2 className="text-4xl text-center">Bem vindo ao dashboard do AgroSense</h2>
       </div>
       <div className="right-panel">
         <h1 className="text-center mb-8 text-4xl">Criar conta</h1>
