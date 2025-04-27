@@ -46,7 +46,7 @@ const Sidebar = () => {
             className="w-full h-24 object-cover rounded-t-md"
           />
           <div className="absolute top-0 left-0 right-0 p-4 bg-black/50 h-24 rounded-t-md">
-            <h2 className="text-xl font-semibold cursor-pointer" onClick={handleRedirect}>Dashboard</h2>
+            <h2 className="text-xl font-semibold cursor-pointer" onClick={handleRedirect}>AgroSense</h2>
           </div>
         </div>
 

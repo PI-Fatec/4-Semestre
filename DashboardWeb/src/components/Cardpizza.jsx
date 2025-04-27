@@ -1,31 +1,88 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale } from 'chart.js';
+import axios from 'axios';
+import { useTheme } from '../contexts/ThemeContext'; 
 
 ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale);
 
 const CardGraficoPizza = () => {
-  const data = {
-    labels: ['A', '  B', '  C', '  D'],
-    datasets: [
-      {
-        data: [300, 50, 100, 200],
-        backgroundColor: ['#0C4F48', '#318A84', '#4D8B00', '#6C5C04'],
-        hoverBackgroundColor: ['#0A3B37', '#276F69', '#3A6900', '#5A4D03'],
-      },
-    ],
-  };
+  const [chartData, setChartData] = useState(null);
+  const { isDarkMode } = useTheme();  
+
+  useEffect(() => {
+    const fetchStatusData = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/sensor/stats");
+        const latestData = response.data.latest_data;
+
+        // Contar a frequência de cada status
+        const statusCounts = { Crítico: 0, Baixo: 0, Médio: 0, Bom: 0 };
+        latestData.forEach((entry) => {
+          const humidity = entry.humidity;
+          if (humidity < 30) {
+            statusCounts["Crítico"] += 1;
+          } else if (humidity >= 30 && humidity < 50) {
+            statusCounts["Baixo"] += 1;
+          } else if (humidity >= 50 && humidity < 70) {
+            statusCounts["Médio"] += 1;
+          } else if (humidity >= 70) {
+            statusCounts["Bom"] += 1;
+          }
+        });
+
+        // Preparar os dados para o gráfico
+        setChartData({
+          labels: Object.keys(statusCounts),
+          datasets: [
+            {
+              data: Object.values(statusCounts),
+              backgroundColor: isDarkMode
+                ? ['#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF'] // Cores para o modo escuro
+                : ['#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF'], // Cores para o modo claro
+              hoverBackgroundColor: isDarkMode
+                ? ['#FF4C4C', '#FFC300', '#4CAF50', '#357EDD'] // Cores ao passar o mouse no modo escuro
+                : ['#FF4C4C', '#FFC300', '#4CAF50', '#357EDD'], // Cores ao passar o mouse no modo claro
+            },
+          ],
+        });
+      } catch (error) {
+        console.error("Erro ao buscar dados do backend:", error);
+      }
+    };
+
+    fetchStatusData();
+  }, [isDarkMode]); // Reexecutar o efeito ao mudar o tema
 
   return (
-    <div className="max-w-full sm:max-w-sm mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
-    <div className="px-4 py-5 sm:p-6">
-      <h2 className="text-xl font-semibold text-gray-800 mb-4 text-center">Tem dado em casa?</h2>
-      <div className="h-64 sm:h-80 md:h-96">
-        <Pie data={data} />
+    <div
+      className={`max-w-full sm:max-w-sm mx-auto rounded-xl shadow-lg overflow-hidden transition-colors ${
+        isDarkMode ? 'dark-bg dark-text' : 'bg-white text-gray-800'
+      }`}
+    >
+      <div className="px-4 py-5 sm:p-6">
+        <div className="h-64 sm:h-80 md:h-96">
+          {chartData ? (
+            <Pie
+              data={chartData}
+              options={{
+                responsive: true,
+                plugins: {
+                  legend: {
+                    position: 'top',
+                    labels: {
+                      color: isDarkMode ? '#CBD5E1' : '#1E293B', // Cor das legendas
+                    },
+                  },
+                },
+              }}
+            />
+          ) : (
+            <p>Carregando dados...</p>
+          )}
+        </div>
       </div>
     </div>
-  </div>
-  
   );
 };
 

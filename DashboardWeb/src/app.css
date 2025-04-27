@@ -1,1 +1,28 @@
 @import "tailwindcss";
+
+/* Substitua suas classes atuais por: */
+.dark-mode {
+    --bg-primary: #1e293b;
+    --bg-secondary: #334155;
+    --bg-tertiary: #475569;
+    --text-primary: #cbd5e1;
+    --text-secondary: #e2e8f0;
+    --title-color: #26d35a;
+  }
+  
+  .light-mode {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f1f5f9;
+    --bg-tertiary: #e2e8f0;
+    --text-primary: #1e293b;
+    --text-secondary: #334155;
+    --title-color: #16a34a;
+  }
+  
+  /* Aplicação das classes */
+  .dark-bg { background-color: var(--bg-primary) }
+  .dark-bg-2 { background-color: var(--bg-secondary) }
+  .dark-bg-3 { background-color: var(--bg-tertiary) }
+  .dark-text { color: var(--text-primary) }
+  .dark-text-2 { color: var(--text-secondary) }
+  .dark-Tittle { color: var(--title-color) }

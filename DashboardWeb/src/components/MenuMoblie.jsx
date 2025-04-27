@@ -32,7 +32,7 @@ const Navbar = () => {
           {isMenuOpen ? <FiX /> : <FiMenu />}
         </button>
 
-        <span className="text-xl font-semibold">Dashboard</span>
+        <span className="text-xl font-semibold">AgroSense</span>
 
         <div className="w-10 h-10 bg-gray-500 rounded-full flex items-center justify-center text-sm">
           {selectedUser.fullName

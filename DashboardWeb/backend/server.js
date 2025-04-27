@@ -4,7 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const authRoutes = require("./routes/AuthRoutes");
 const dotenv = require("dotenv");
-const pool = require("./config/db"); 
+const sensorRoutes = require("./routes/SensorRoutes");
 
 dotenv.config();
 
@@ -28,6 +28,8 @@ app.get('/health', (req, res) => {
     auth: 'JWT'
   });
 });
+
+app.use('/api/sensor', sensorRoutes);
 
 
 

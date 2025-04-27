@@ -81,7 +81,13 @@ export default function Login() {
             label="Entrar" 
           />
         </form>
+        <p className="text-sm text-center mt-4">
+  <a href="/forgot-password" className="text-blue-500 hover:underline">
+    Esqueci minha senha
+  </a>
+</p>
       </div>
+      
       <ToastContainer />
     </div>
   );
