@@ -7,7 +7,8 @@ import InputEmail from "../components/Inputemail";
 import Button from "../components/Button";
 import InputPassword from "../components/InputSenha";
 import InputText from "../components/InputText";
-
+import Lottie from "lottie-react";
+import animationData from "../assets/animation.json";
 export default function Cadastro() {
   const {
     register,
@@ -59,10 +60,16 @@ export default function Cadastro() {
   return (
     <div className="login-container">
       <div className="left-panel ">
-        <h2 className="text-4xl text-center">Bem vindo ao dashboard do AgroSense</h2>
+         <img src="./logosite.svg" alt="Logo" className="logo h-100 " />
+                <Lottie
+                  animationData={animationData}
+                  className="lottie-animation"
+                  loop
+                  autoplay
+                />
       </div>
       <div className="right-panel">
-        <h1 className="text-center mb-8 text-4xl">Criar conta</h1>
+        <h1 className="text-center mb-8 text-6xl">Criar conta</h1>
         <p className="mb-4">
           Já possui uma conta? <a href="/login">Login</a>
         </p>

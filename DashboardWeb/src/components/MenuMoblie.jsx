@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router";
 import { FiMenu, FiX, FiLogOut } from "react-icons/fi";
 import { IoIosSettings } from "react-icons/io";
+import { VscGraph } from "react-icons/vsc";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -32,8 +33,11 @@ const Navbar = () => {
           {isMenuOpen ? <FiX /> : <FiMenu />}
         </button>
 
-        <span className="text-xl font-semibold">AgroSense</span>
-
+        <img
+              src="./logosite.svg"
+              className="h-25 w-30"
+              style={{ objectFit: "contain" }}
+            />
         <div className="w-10 h-10 bg-gray-500 rounded-full flex items-center justify-center text-sm">
           {selectedUser.fullName
             .split(" ")
@@ -59,6 +63,13 @@ const Navbar = () => {
               <IoIosSettings className="text-white" />
               <p className="text-white">Configurações</p>
             </Link>
+            <Link
+                          to="/dashboard"
+                          className="hover:bg-gray-700 px-4 py-2 rounded-md text-white text-lg flex items-center gap-2"
+                        >
+                          <VscGraph className="text-white" />
+                          <p className="text-white">Dashboard</p>
+                        </Link>
 
             <button
               onClick={handleLogout}

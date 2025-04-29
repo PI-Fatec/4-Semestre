@@ -7,7 +7,8 @@ import { Navigate, useNavigate } from "react-router";
 import Button from "../components/Button";
 import InputEmail from "../components/Inputemail";
 import InputPassword from "../components/InputSenha";
-
+import Lottie from "lottie-react";
+import animationData from "../assets/animation.json"; 
 
 export default function Login() {
   const { register, handleSubmit } = useForm();
@@ -42,8 +43,8 @@ export default function Login() {
       
       toast.success(`Login realizado com sucesso! Bem-vindo ${result.user.email}`);
       setTimeout(() => {
-        navigate('/dashboard');
-      }, 1500);
+        navigate("/dashboard", { state: { from: "login" } });
+            }, 1500);
       
     } catch (error) {
       console.error("Erro no login:", error);
@@ -62,30 +63,31 @@ export default function Login() {
   return (
     <div className="login-container">
       <div className="left-panel">
-        <h2 className="text-5xl text-center">Bem vindo de volta! </h2>
+        <img src="./logosite.svg" alt="Logo" className="logo h-100 " />
+        <Lottie
+          animationData={animationData}
+          className="lottie-animation"
+          loop
+          autoplay
+        />
       </div>
       <div className="right-panel">
-        <h1 className="text-center mb-8 text-6xl">Entrar</h1>
+        <h1 className="text-center mb-8 text-6xl">Bem vindo de volta!</h1>
         <p className="mb-4">Não tem uma conta? <a href="/">Cadastre-se</a></p>
 
         <form onSubmit={handleSubmit(handleLogin)}>
-        <InputEmail register={register} />
-
-
-        <InputPassword register={register} />
-
-          
-
+          <InputEmail register={register} />
+          <InputPassword register={register} />
           <Button 
-          type="submit"
+            type="submit"
             label="Entrar" 
           />
         </form>
         <p className="text-sm text-center mt-4">
-  <a href="/forgot-password" className="text-blue-500 hover:underline">
-    Esqueci minha senha
-  </a>
-</p>
+          <a href="/forgot-password" className="text-blue-500 hover:underline">
+            Esqueci minha senha
+          </a>
+        </p>
       </div>
       
       <ToastContainer />

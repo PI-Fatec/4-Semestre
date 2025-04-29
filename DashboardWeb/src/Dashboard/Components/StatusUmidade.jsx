@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FaTint } from "react-icons/fa";
+import SkeletonStatusUmidade from "./Skeletoncard";
 
 const StatusUmidade = () => {
     const [humidity, setHumidity] = useState(null);
     const [status, setStatus] = useState("");
     const [color, setColor] = useState("");
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchHumidity = async () => {
             try {
                 const response = await axios.get("http://localhost:5000/api/sensor/stats");
-                const humidityValue = response.data.latest_data[0].humidity; // Ajustado para acessar o valor correto
+                const humidityValue = response.data.latest_data[0].humidity;
                 setHumidity(humidityValue);
                 updateStatusAndColor(humidityValue);
             } catch (error) {
                 console.error("Erro ao buscar dados do sensor:", error);
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -41,6 +45,10 @@ const StatusUmidade = () => {
         }
     };
 
+    if (loading) {
+        return <SkeletonStatusUmidade />;
+    }
+
     return (
         <div
             className={`flex flex-col items-center justify-center w-72 h-36 rounded-lg text-white relative shadow-lg overflow-hidden ${color}`}
@@ -48,7 +56,7 @@ const StatusUmidade = () => {
             <h3 className="text-lg font-semibold">Status Atual de Umidade</h3>
             <p className="text-xs text-gray-100">Valor referente as ultimas duas horas </p>
             <p className="text-2xl font-bold">
-                {humidity !== null ? `${humidity.toFixed(2)}%` : "Carregando..."}
+                {humidity !== null ? `${humidity.toFixed(2)}%` : ""}
             </p>
             <p className="text-sm">{status}</p>
             <FaTint

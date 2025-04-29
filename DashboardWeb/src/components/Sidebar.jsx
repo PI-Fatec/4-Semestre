@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { FiLogOut } from "react-icons/fi";
 import { IoIosSettings } from "react-icons/io";
+import { VscGraph } from "react-icons/vsc";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -39,14 +40,19 @@ const Sidebar = () => {
     >
       {" "}
       <div className="flex flex-col w-full ">
-        <div className="relative">
+      <div className="relative">
           <img
-            src="./imgsidebar.jpg"
+            src="./imgsidebar2.jpg"
             alt="Sidebar Top Image"
             className="w-full h-24 object-cover rounded-t-md"
           />
-          <div className="absolute top-0 left-0 right-0 p-4 bg-black/50 h-24 rounded-t-md">
-            <h2 className="text-xl font-semibold cursor-pointer" onClick={handleRedirect}>AgroSense</h2>
+          <div className="absolute inset-0 flex items-center justify-center bg-black/70 h-24 rounded-t-md">
+            <img
+              src="./logosite.svg"
+              onClick={handleRedirect}
+              className="h-30 w-30 cursor-pointer"
+              style={{ objectFit: "contain" }}
+            />
           </div>
         </div>
 
@@ -72,6 +78,13 @@ const Sidebar = () => {
               <IoIosSettings className="text-white" />
               <p className="text-white">Configurações</p>
             </Link>
+            <Link
+              to="/dashboard"
+              className="hover:bg-gray-700 px-4 py-2 rounded-md text-white text-lg flex items-center gap-2"
+            >
+              <VscGraph className="text-white" />
+              <p className="text-white">Dashboard</p>
+            </Link>
             <div className="text-white hover:text-red-600">
               <Link
                 to="#"
@@ -83,7 +96,7 @@ const Sidebar = () => {
               >
                 <FiLogOut className="text-lg text-white transition-colors group-hover:text-red-600" />
                 <span className="transition-colors text-white group-hover:text-red-600">
-                  Logout
+                  Sair
                 </span>
               </Link>
             </div>

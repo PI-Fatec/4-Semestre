@@ -3,6 +3,8 @@ import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js';
 import axios from 'axios';
 import { useTheme } from '../contexts/ThemeContext'; 
+import { FaSpinner } from 'react-icons/fa';
+import Spinner from './Spinner';
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
@@ -19,7 +21,7 @@ const CardGraficoBarras = () => {
         const monthlyData = {};
         latestData.forEach((entry) => {
           const date = new Date(entry.timestamp);
-          const month = date.toLocaleString('default', { month: 'short' }); // Nome do mês abreviado
+          const month = date.toLocaleString('default', { month: 'short' });
           if (!monthlyData[month]) {
             monthlyData[month] = { total: 0, count: 0 };
           }
@@ -37,11 +39,11 @@ const CardGraficoBarras = () => {
               label: 'Média Mensal (%)',
               data,
               backgroundColor: isDarkMode
-                ? ['#4D96FF', '#6BCB77', '#FFD93D', '#FF6B6B', '#845EC2', '#FFC75F'] // Cores para o modo escuro
-                : ['#0C4F48', '#318A84', '#4D8B00', '#6C5C04', '#4A90E2', '#F5A623'], // Cores para o modo claro
+                ? ['#4D96FF', '#6BCB77', '#FFD93D', '#FF6B6B', '#845EC2', '#FFC75F']
+                : ['#0C4F48', '#318A84', '#4D8B00', '#6C5C04', '#4A90E2', '#F5A623'],
               hoverBackgroundColor: isDarkMode
-                ? ['#357EDD', '#4CAF50', '#FFC300', '#FF4C4C', '#6A4FBF', '#E5A347'] // Cores ao passar o mouse no modo escuro
-                : ['#0A3B37', '#276F69', '#3A6900', '#5A4D03', '#3A78C2', '#D48A1A'], // Cores ao passar o mouse no modo claro
+                ? ['#357EDD', '#4CAF50', '#FFC300', '#FF4C4C', '#6A4FBF', '#E5A347']
+                : ['#0A3B37', '#276F69', '#3A6900', '#5A4D03', '#3A78C2', '#D48A1A'],
             },
           ],
         });
@@ -51,16 +53,16 @@ const CardGraficoBarras = () => {
     };
 
     fetchMonthlyData();
-  }, [isDarkMode]); // Reexecutar o efeito ao mudar o tema
+  }, [isDarkMode]);
 
   return (
     <div
       className={`max-w-full sm:max-w-sm mx-auto rounded-xl shadow-lg overflow-hidden transition-colors ${
-        isDarkMode ? 'dark-bg dark-text' : 'bg-white text-gray-800'
+        isDarkMode ? 'dark-bg-2 dark-text' : 'bg-white text-gray-800'
       }`}
     >
       <div className="px-4 py-5 sm:p-6">
-        <div className="h-64 sm:h-80 md:h-96">
+        <div className="h-64 sm:h-80 md:h-96 flex items-center justify-center">
           {chartData ? (
             <Bar
               data={chartData}
@@ -70,27 +72,26 @@ const CardGraficoBarras = () => {
                   legend: {
                     position: 'top',
                     labels: {
-                      color: isDarkMode ? '#CBD5E1' : '#1E293B', // Cor das legendas
+                      color: isDarkMode ? '#CBD5E1' : '#1E293B',
                     },
                   },
                 },
                 scales: {
                   x: {
                     ticks: {
-                      color: isDarkMode ? '#CBD5E1' : '#1E293B', // Cor dos rótulos do eixo X
+                      color: isDarkMode ? '#CBD5E1' : '#1E293B',
                     },
                   },
                   y: {
                     ticks: {
-                      color: isDarkMode ? '#CBD5E1' : '#1E293B', // Cor dos rótulos do eixo Y
+                      color: isDarkMode ? '#CBD5E1' : '#1E293B',
                     },
                   },
                 },
               }}
             />
           ) : (
-            <p>Carregando dados...</p>
-          )}
+<Spinner className='mx-auto'/>          )}
         </div>
       </div>
     </div>

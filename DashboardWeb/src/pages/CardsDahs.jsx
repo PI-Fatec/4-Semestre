@@ -16,21 +16,23 @@ export default function CardDash() {
     >
       <div className="mx-auto max-w-7xl space-y-10">
         <div className="flex flex-col md:flex-row justify-between items-center mb-10">
-          <h1
-            className={`text-4xl font-bold mb-6 md:mb-0 ${
-              isDarkMode ? "dark-Tittle" : "text-gray-800"
-            }`}
-          >
-            Dashboard de Monitoramento
-          </h1>
+          <div className="flex flex-col items-center w-full md:w-auto">
+            <h1
+              className={`text-4xl font-bold mb-4 md:mb-0 ${
+                isDarkMode ? "dark-Tittle" : "text-gray-800"
+              }`}
+            >
+              Dashboard de Monitoramento
+            </h1>
+            <div className="mb-4">
+              <StatusUmidade />
+            </div>
+          </div>
           <FiltroComTabela />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div className="">
-            <StatusUmidade />
-          </div>
-          <div className=" ">
+          <div>
             <h3
               className={`text-xl font-semibold mb-6 ${
                 isDarkMode ? "dark-text" : "text-gray-700"
@@ -40,7 +42,7 @@ export default function CardDash() {
             </h3>
             <CardGraficoPizza />
           </div>
-          <div className=" ">
+          <div>
             <h3
               className={`text-xl font-semibold mb-6 ${
                 isDarkMode ? "dark-text" : "text-gray-700"

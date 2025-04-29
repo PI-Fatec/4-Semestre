@@ -7,16 +7,25 @@
   
   .left-panel {
     flex: 1;
-    background: url('https://images.unsplash.com/photo-1559825481-12a05cc00344?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center;
-    background-size: cover;
+    background-color: #f0f8ff; /* cor de fundo clara, você pode trocar se quiser */
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     text-align: center;
     padding: 20px;
-    font-size: 24px;
-    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    color: #333; /* texto escuro para combinar com fundo claro */
   }
+  
+  .lottie-animation {
+    width: 450px;
+    height: 450px;
+    margin-bottom: 40px;
+  }
+  
   
   .right-panel {
     flex: 1;

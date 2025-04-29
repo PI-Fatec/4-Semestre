@@ -3,6 +3,7 @@ import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale } from 'chart.js';
 import axios from 'axios';
 import { useTheme } from '../contexts/ThemeContext'; 
+import Spinner from './Spinner';
 
 ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale);
 
@@ -57,7 +58,7 @@ const CardGraficoPizza = () => {
   return (
     <div
       className={`max-w-full sm:max-w-sm mx-auto rounded-xl shadow-lg overflow-hidden transition-colors ${
-        isDarkMode ? 'dark-bg dark-text' : 'bg-white text-gray-800'
+        isDarkMode ? 'dark-bg-2 dark-text' : 'bg-white text-gray-800'
       }`}
     >
       <div className="px-4 py-5 sm:p-6">
@@ -78,8 +79,9 @@ const CardGraficoPizza = () => {
               }}
             />
           ) : (
-            <p>Carregando dados...</p>
-          )}
+            <div className='mx-auto w-24 h-24'>
+<Spinner className='w-24 h-24' /> 
+</div>          )}
         </div>
       </div>
     </div>

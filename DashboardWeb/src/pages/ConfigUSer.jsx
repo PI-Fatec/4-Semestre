@@ -113,7 +113,7 @@ export default function UpdateUser() {
       <Sidebar />
       <Navbar />
 
-      <div className="flex-1 ml-0 md:ml-64 p-4 mt-20 md:mt-0 transition-all duration-300">
+      <div className="flex-1 ml-0 md:ml-64 p-4 mt-33 md:mt-0 transition-all duration-300">
         <div className="mb-4 flex justify-between items-center">
           <Breadcrumb items={[]} currentPage="Configurações do usuário" />
           <ThemeToggle />

@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
-/* Substitua suas classes atuais por: */
 .dark-mode {
-    --bg-primary: #1e293b;
-    --bg-secondary: #334155;
-    --bg-tertiary: #475569;
+  --bg-primary: #0f172a;   
+  --bg-secondary: #1e293b;  
+  --bg-tertiary: #334155;   
+  
     --text-primary: #cbd5e1;
     --text-secondary: #e2e8f0;
     --title-color: #26d35a;

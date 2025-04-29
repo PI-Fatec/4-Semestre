@@ -8,6 +8,8 @@ import UpdateUser from "./pages/ConfigUSer";
 import ForgotPassword from "./Login/ForgotPassword";
 import ResetPassword from "./Login/resetsenha";
 import { ThemeProvider } from './contexts/ThemeContext'
+import Error505 from "./pages/505";
+import Network from "./pages/Network";
 
 export default function Rotas() {
   return (
@@ -32,6 +34,8 @@ export default function Rotas() {
         <Route path="/configuser" element={<UpdateUser />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/network" element={<Network />} />
+        <Route path="/505" element={<Error505 />} />
       </Routes>
       </ThemeProvider>
 
