@@ -1,7 +1,6 @@
 const pool = require('../config/db');
 
 const SensorController = {
-  // Salvar dados do sensor
   collectData: async (req, res) => {
     try {
       const { humidity } = req.body;
@@ -22,7 +21,6 @@ const SensorController = {
     }
   },
 
-  // Obter estatísticas
   getStats: async (req, res) => {
     try {
       const [rows] = await pool.execute(
@@ -35,18 +33,15 @@ const SensorController = {
 
       const humidityValues = rows.map(row => row.humidity);
 
-      // Cálculo da média
       const total = humidityValues.reduce((acc, val) => acc + val, 0);
       const mean = total / humidityValues.length;
 
-      // Cálculo da mediana
       const sortedValues = [...humidityValues].sort((a, b) => a - b);
       const mid = Math.floor(sortedValues.length / 2);
       const median = sortedValues.length % 2 !== 0 
         ? sortedValues[mid] 
         : (sortedValues[mid - 1] + sortedValues[mid]) / 2;
 
-      // Cálculo da moda
       const frequency = {};
       let maxFreq = 0;
       let modes = [];
@@ -66,7 +61,7 @@ const SensorController = {
         median: Number(median.toFixed(2)),
         mode: modes.length === 1 ? modes[0] : modes,
         count: humidityValues.length,
-        latest_data: rows.slice(-10).reverse() // Últimos 10 registros
+        latest_data: rows.slice(-10).reverse() 
       });
 
     } catch (error) {

@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 .dark-mode {
-  --bg-primary: #0f172a;   
-  --bg-secondary: #1e293b;  
-  --bg-tertiary: #334155;   
+  --bg-primary: #0f172a;       
+  --bg-secondary: #1e293b;   
+  --bg-tertiary: #263144;   
   
     --text-primary: #cbd5e1;
     --text-secondary: #e2e8f0;

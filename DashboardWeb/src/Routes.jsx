@@ -11,6 +11,7 @@ import { ThemeProvider } from './contexts/ThemeContext'
 import Error505 from "./pages/505";
 import Network from "./pages/Network";
 import NotificationPage from "./pages/Notificationpage";
+import ReportPage from "./Relatorio/pages/ReportPage";
 
 export default function Rotas() {
   return (
@@ -38,6 +39,8 @@ export default function Rotas() {
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/network" element={<Network />} />
         <Route path="/505" element={<Error505 />} />
+        <Route path="*" element={<Error505 />} />
+        <Route path="/relatorios" element={<ReportPage />} />
       </Routes>
       </ThemeProvider>
 
