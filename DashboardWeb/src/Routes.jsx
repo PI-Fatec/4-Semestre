@@ -10,6 +10,7 @@ import ResetPassword from "./Login/resetsenha";
 import { ThemeProvider } from './contexts/ThemeContext'
 import Error505 from "./pages/505";
 import Network from "./pages/Network";
+import NotificationPage from "./pages/Notificationpage";
 
 export default function Rotas() {
   return (
@@ -26,6 +27,7 @@ export default function Rotas() {
         pauseOnHover
       />
           <ThemeProvider>
+          <NotificationPage />
 
       <Routes>
         <Route path="/" element={<Cadastro />} />
