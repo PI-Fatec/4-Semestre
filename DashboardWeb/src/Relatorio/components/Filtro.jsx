@@ -40,7 +40,7 @@ const Filtro = ({ onFiltrar }) => {
 
   return (
     <div className={`rounded-lg shadow-md p-6 w-full max-w-5xl flex flex-col gap-4 ${isDarkMode ? "bg-gray-800" : "bg-white"}`}>
-      <h2 className={`text-lg font-bold mb-2 ${isDarkMode ? "text-white" : "text-gray-900"}`}>Filtros do Relatório</h2>
+      <h2 className={`text-lg font-bold mb-2 ${isDarkMode ? "text-white" : "text-gray-900"}`}>Relatorio de umidade</h2>
       <form onSubmit={handleFiltrar} className="flex flex-row flex-wrap gap-4 items-end">
         <div className="flex flex-col flex-1 min-w-[150px]">
           <label className={`text-sm mb-1 ${isDarkMode ? "text-gray-200" : "text-gray-700"}`}>Data Inicial</label>
