@@ -1,9 +1,7 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 
 const NotificationPage = () => {
-  const lastAttRef = useRef(null);
-
   useEffect(() => {
     if (Notification.permission !== "granted") {
       Notification.requestPermission();
@@ -12,15 +10,25 @@ const NotificationPage = () => {
     const checkNotification = async () => {
       try {
         const response = await axios.get("http://localhost:5000/api/sensor/stats");
-        const last = response.data[response.data.length - 1];
-        if (last && last.att && lastAttRef.current !== last.att) {
+        const latestData = response.data.latest_data || [];
+        if (latestData.length === 0) return;
+
+        const readNotifications = JSON.parse(localStorage.getItem("readNotifications") || "[]");
+
+        const novas = latestData.filter(item => !readNotifications.includes(item.timestamp));
+
+        novas.forEach((item) => {
           if (Notification.permission === "granted") {
-            new Notification("Nova atualização detectada!", {
-              body: "Há uma nova atualização no sistema.",
-              icon: "./logosite.svg", 
+            new Notification("Seu sensor enviou uma nova notificação", {
+              body: `Umidade: ${item.humidity} - ${new Date(item.timestamp).toLocaleString()}`,
+              icon: "./logosite.svg",
             });
           }
-          lastAttRef.current = last.att;
+          readNotifications.push(item.timestamp);
+        });
+
+        if (novas.length > 0) {
+          localStorage.setItem("readNotifications", JSON.stringify(readNotifications));
         }
       } catch (error) {
         console.error("Erro ao buscar notificações:", error);
@@ -28,11 +36,11 @@ const NotificationPage = () => {
     };
 
     checkNotification();
-    const interval = setInterval(checkNotification, 10000);
+    const interval = setInterval(checkNotification, 50000);
     return () => clearInterval(interval);
   }, []);
 
-  return null; 
+  return null;
 };
 
 export default NotificationPage;

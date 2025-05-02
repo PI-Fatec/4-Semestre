@@ -4,6 +4,7 @@ import CardGraficoPizza from "../components/Cardpizza";
 import FiltroComTabela from "../components/FIltro";
 import AreaCard from "../components/AreaCard"; 
 import { useTheme } from "../contexts/ThemeContext"; 
+import CardRadar from "../Dashboard/Components/CardRadar";
 
 export default function CardDash() {
   const { isDarkMode } = useTheme(); 
@@ -51,6 +52,16 @@ export default function CardDash() {
               Média Mensal de Umidade
             </h3>
             <CardGraficoBarras />
+          </div>
+          <div>
+            <h3
+              className={`text-xl font-semibold mb-6 ${
+                isDarkMode ? "dark-text" : "text-gray-700"
+              }`}
+            >
+              Distribuição de Status do Solo
+            </h3>
+            <CardRadar />
           </div>
         </div>
 

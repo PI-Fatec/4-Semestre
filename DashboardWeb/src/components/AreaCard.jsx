@@ -80,9 +80,7 @@ const AreaCard = () => {
       }`}
     >
       <div className="h-full">
-        <h2 className="text-xl font-semibold mb-4 text-center">
-          Gráfico de Área - Umidade
-        </h2>
+      
         <div className="h-full">
           {chartData ? (
             <Line

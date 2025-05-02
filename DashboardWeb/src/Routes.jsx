@@ -10,8 +10,9 @@ import ResetPassword from "./Login/resetsenha";
 import { ThemeProvider } from './contexts/ThemeContext'
 import Error505 from "./pages/505";
 import Network from "./pages/Network";
-import NotificationPage from "./pages/Notificationpage";
+import NotificationPage from "./pages/NotificationPage";
 import ReportPage from "./Relatorio/pages/ReportPage";
+import ConfigSensor from "./Config/Pages/ConfigSensor";
 
 export default function Rotas() {
   return (
@@ -41,6 +42,7 @@ export default function Rotas() {
         <Route path="/505" element={<Error505 />} />
         <Route path="*" element={<Error505 />} />
         <Route path="/relatorios" element={<ReportPage />} />
+        <Route path="/configsensor" element={<ConfigSensor />} />
       </Routes>
       </ThemeProvider>
 

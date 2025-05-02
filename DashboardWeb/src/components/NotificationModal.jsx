@@ -1,6 +1,7 @@
 import React from "react";
 import { IoMdClose } from "react-icons/io";
 import { useTheme } from "../contexts/ThemeContext";
+import { FaCheckCircle } from "react-icons/fa";
 
 const NotificationModal = ({ open, onClose, notifications, onMarkAsRead }) => {
   const { isDarkMode } = useTheme();
@@ -13,8 +14,8 @@ const NotificationModal = ({ open, onClose, notifications, onMarkAsRead }) => {
   const bgItem = isDarkMode ? "bg-gray-700" : "bg-gray-100";
   const textItem = isDarkMode ? "text-white" : "text-gray-800";
   const textSecondary = isDarkMode ? "text-gray-300" : "text-gray-500";
-  const textButton = isDarkMode ? "text-blue-400" : "text-blue-600";
-  const hoverButton = isDarkMode ? "hover:text-blue-300" : "hover:text-blue-800";
+  const textButton = isDarkMode ? "text-green-400" : "text-green-600";
+  const hoverButton = isDarkMode ? "hover:text-green-300" : "hover:text-green-800";
   const hoverClose = isDarkMode ? "hover:text-red-400" : "hover:text-red-500";
 
   return (
@@ -44,7 +45,7 @@ const NotificationModal = ({ open, onClose, notifications, onMarkAsRead }) => {
                   className={`text-xs ${textButton} ${hoverButton} hover:underline`}
                   onClick={() => onMarkAsRead(n.id)}
                 >
-                  Marcar como lida
+                  Marcar como lida <FaCheckCircle className="inline-block ml-1" />
                 </button>
               </li>
             ))}

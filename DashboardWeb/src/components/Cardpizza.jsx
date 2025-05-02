@@ -17,8 +17,7 @@ const CardGraficoPizza = () => {
         const response = await axios.get("http://localhost:5000/api/sensor/stats");
         const latestData = response.data.latest_data;
 
-        // Contar a frequência de cada status
-        const statusCounts = { Crítico: 0, Baixo: 0, Médio: 0, Bom: 0 };
+        const statusCounts = { Crítico: 0, Baixo: 0, Médio: 0, Bom: 0, Sobrecarregado: 0 };
         latestData.forEach((entry) => {
           const humidity = entry.humidity;
           if (humidity < 30) {
@@ -27,23 +26,32 @@ const CardGraficoPizza = () => {
             statusCounts["Baixo"] += 1;
           } else if (humidity >= 50 && humidity < 70) {
             statusCounts["Médio"] += 1;
-          } else if (humidity >= 70) {
+          } else if (humidity >= 70 && humidity <= 100) {
             statusCounts["Bom"] += 1;
+          } else if (humidity > 100) {
+            statusCounts["Sobrecarregado"] += 1;
           }
         });
 
-        // Preparar os dados para o gráfico
         setChartData({
           labels: Object.keys(statusCounts),
           datasets: [
             {
               data: Object.values(statusCounts),
-              backgroundColor: isDarkMode
-                ? ['#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF'] // Cores para o modo escuro
-                : ['#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF'], // Cores para o modo claro
-              hoverBackgroundColor: isDarkMode
-                ? ['#FF4C4C', '#FFC300', '#4CAF50', '#357EDD'] // Cores ao passar o mouse no modo escuro
-                : ['#FF4C4C', '#FFC300', '#4CAF50', '#357EDD'], // Cores ao passar o mouse no modo claro
+              backgroundColor: [
+                '#ef4444',
+                '#f97316',
+                '#fde047',
+                '#22c55e',
+                '#a21caf',
+              ],
+              hoverBackgroundColor: [
+                '#dc2626',
+                '#ea580c',
+                '#facc15',
+                '#16a34a',
+                '#7c3aed',
+              ],
             },
           ],
         });
@@ -53,7 +61,7 @@ const CardGraficoPizza = () => {
     };
 
     fetchStatusData();
-  }, [isDarkMode]); // Reexecutar o efeito ao mudar o tema
+  }, [isDarkMode]);
 
   return (
     <div
@@ -72,7 +80,7 @@ const CardGraficoPizza = () => {
                   legend: {
                     position: 'top',
                     labels: {
-                      color: isDarkMode ? '#CBD5E1' : '#1E293B', // Cor das legendas
+                      color: isDarkMode ? '#CBD5E1' : '#1E293B',
                     },
                   },
                 },
@@ -80,8 +88,9 @@ const CardGraficoPizza = () => {
             />
           ) : (
             <div className='mx-auto w-24 h-24'>
-<Spinner className='w-24 h-24' /> 
-</div>          )}
+              <Spinner className='w-24 h-24' /> 
+            </div>
+          )}
         </div>
       </div>
     </div>
