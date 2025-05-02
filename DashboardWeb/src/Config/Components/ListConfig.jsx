@@ -12,7 +12,7 @@ const ListConfig = () => {
 
   useEffect(() => {
     
-    axios.get('https://back-end-pi-27ls.onrender.com//api/sensor/intervalo')
+    axios.get('https://back-end-pi-27ls.onrender.com/api/sensor/intervalo')
       .then(res => {
         
         setIntervalo(res.data.intervalo);

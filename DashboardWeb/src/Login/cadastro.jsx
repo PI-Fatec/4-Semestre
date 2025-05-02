@@ -9,6 +9,8 @@ import InputPassword from "../components/InputSenha";
 import InputText from "../components/InputText";
 import Lottie from "lottie-react";
 import animationData from "../assets/animation.json";
+import axios from "axios";
+
 export default function Cadastro() {
   const {
     register,
@@ -28,20 +30,21 @@ export default function Cadastro() {
     };
     console.log("Dados enviados:", sanitizedData);
     try {
-      const response = await fetch("https://back-end-pi-27ls.onrender.com//api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(sanitizedData),
-      });
+      const response = await axios.post(
+        "https://back-end-pi-27ls.onrender.com/api/auth/register",
+        sanitizedData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-      const result = await response.json();
-
-      if (response.ok) {
+      if (response.status === 200 || response.status === 201) {
         toast.success("Cadastro realizado com sucesso! ");
       } else {
-        if (result.error.includes("já está cadastrado")) {
+        const result = response.data;
+        if (result.error && result.error.includes("já está cadastrado")) {
           toast.error(result.error, {
             autoClose: 6000,
           });
@@ -50,7 +53,14 @@ export default function Cadastro() {
         }
       }
     } catch (error) {
-      toast.error("Não foi possível conectar ao servidor", {});
+      const result = error.response?.data;
+      if (result && result.error && result.error.includes("já está cadastrado")) {
+        toast.error(result.error, {
+          autoClose: 6000,
+        });
+      } else {
+        toast.error(result?.error || "Não foi possível conectar ao servidor");
+      }
       console.error("Erro na requisição:", error);
     } finally {
       setIsSubmitting(false);

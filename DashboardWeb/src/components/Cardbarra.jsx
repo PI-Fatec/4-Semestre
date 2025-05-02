@@ -15,7 +15,7 @@ const CardGraficoBarras = () => {
   useEffect(() => {
     const fetchMonthlyData = async () => {
       try {
-        const response = await axios.get("https://back-end-pi-27ls.onrender.com//api/sensor/stats");
+        const response = await axios.get("https://back-end-pi-27ls.onrender.com/api/sensor/stats");
         const latestData = response.data.latest_data;
 
         const monthlyData = {};
