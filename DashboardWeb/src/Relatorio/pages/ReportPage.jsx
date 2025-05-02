@@ -26,7 +26,7 @@ const ReportPage = () => {
 
     const query = new URLSearchParams(params).toString();
     const response = await axios.get(
-      `http://localhost:5000/api/sensor/report?${query}`
+      `https://back-end-pi-27ls.onrender.com//api/sensor/report?${query}`
     );
     setDados(response.data);
     setFiltroAtivo(true);

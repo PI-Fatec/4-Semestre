@@ -12,7 +12,7 @@ const StatusUmidade = () => {
     useEffect(() => {
         const fetchHumidity = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/api/sensor/stats");
+                const response = await axios.get("https://back-end-pi-27ls.onrender.com//api/sensor/stats");
                 const humidityValue = response.data.latest_data[0].humidity;
                 setHumidity(humidityValue);
                 updateStatusAndColor(humidityValue);

@@ -28,7 +28,7 @@ export default function Cadastro() {
     };
     console.log("Dados enviados:", sanitizedData);
     try {
-      const response = await fetch("http://localhost:5000/api/auth/register", {
+      const response = await fetch("https://back-end-pi-27ls.onrender.com//api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

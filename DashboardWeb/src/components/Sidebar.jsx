@@ -53,7 +53,7 @@ const Sidebar = () => {
 
   const fetchNotifications = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/sensor/stats");
+      const response = await axios.get("https://back-end-pi-27ls.onrender.com//api/sensor/stats");
       const nots = (response.data.latest_data || []).map((item) => ({
         id: item.timestamp, // Usa timestamp como id único
         att: `Umidade: ${item.humidity} - ${new Date(item.timestamp).toLocaleString()}`
