@@ -14,7 +14,7 @@ const FiltroComTabela = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const response = await axios.get("https://back-end-pi-27ls.onrender.com/api/sensor/stats");
+        const response = await axios.get("http://localhost:5000/api/sensor/stats");
         setStats({
           mean: response.data.mean,
           median: response.data.median,
@@ -30,7 +30,7 @@ const FiltroComTabela = () => {
 
   return (
     <div
-      className={`relative max-w-4xl mx-auto p-4 transition-colors duration-300 ${
+      className={`relative max-w-4xl mx-auto p-4 rounded-lg shadow transition-colors duration-300 ${
         isDarkMode ? "dark-bg dark-text" : "bg-gray-100 text-gray-800"
       }`}
     >

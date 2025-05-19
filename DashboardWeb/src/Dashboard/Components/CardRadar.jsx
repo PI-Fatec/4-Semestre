@@ -8,11 +8,11 @@ ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, 
 
 const METRICAS = ["Crítico", "Baixo", "Médio", "Bom", "Sobrecarregado"];
 const COLORS = [
-  "rgba(239,68,68,0.7)",      // Crítico - red-500
-  "rgba(249,115,22,0.7)",     // Baixo - orange-500
-  "rgba(253,224,71,0.7)",     // Médio - yellow-500
-  "rgba(34,197,94,0.7)",      // Bom - green-500
-  "rgba(162,28,175,0.7)",     // Sobrecarregado - purple-500
+  "rgba(239,68,68,0.7)",     
+  "rgba(249,115,22,0.7)",     
+  "rgba(253,224,71,0.7)",     
+  "rgba(34,197,94,0.7)",      
+  "rgba(162,28,175,0.7)",     
 ];
 
 function getStatus(value) {
@@ -30,7 +30,7 @@ const CardRadar = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("https://back-end-pi-27ls.onrender.com/api/sensor/stats");
+        const res = await axios.get("http://localhost:5000/api/sensor/stats");
         const now = new Date();
         const thisMonth = now.getMonth();
         const thisYear = now.getFullYear();
@@ -69,7 +69,6 @@ const CardRadar = () => {
 
   return (
     <div className={`rounded-xl shadow-lg p-4 ${isDarkMode ? "dark-bg-2 dark-text" : "bg-white text-gray-800"}`}>
-      <h3 className="text-lg font-bold mb-4">Radar de Umidade (Mês Atual)</h3>
       <div className="h-80">
         {dataRadar ? (
           <Radar

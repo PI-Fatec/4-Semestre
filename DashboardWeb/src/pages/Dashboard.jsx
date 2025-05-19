@@ -7,6 +7,7 @@ import { useNavigate, useLocation } from "react-router";
 import Breadcrumb from "../components/BreadCrumb";
 import { useTheme } from "../contexts/ThemeContext";
 import { LoadingPage } from "../components/Loadingpage";
+import StatsDashboard from "../Dashboard/Card";
 
 export default function Dashboard() {
   const [isOpen, setIsOpen] = useState(true);

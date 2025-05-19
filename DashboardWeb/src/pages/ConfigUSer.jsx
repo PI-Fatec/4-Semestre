@@ -64,7 +64,7 @@ export default function UpdateUser() {
     }
 
     try {
-      const response = await fetch("https://back-end-pi-27ls.onrender.com/api/auth/update", {
+      const response = await fetch("http://localhost:5000/api/auth/update", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

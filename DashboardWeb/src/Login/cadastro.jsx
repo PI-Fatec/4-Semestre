@@ -31,7 +31,7 @@ export default function Cadastro() {
     console.log("Dados enviados:", sanitizedData);
     try {
       const response = await axios.post(
-        "https://back-end-pi-27ls.onrender.com/api/auth/register",
+        "http://localhost:5000/api/auth/register",
         sanitizedData,
         {
           headers: {

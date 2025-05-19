@@ -5,6 +5,7 @@ import FiltroComTabela from "../components/FIltro";
 import AreaCard from "../components/AreaCard"; 
 import { useTheme } from "../contexts/ThemeContext"; 
 import CardRadar from "../Dashboard/Components/CardRadar";
+import StatsDashboard from "../Dashboard/Card";
 
 export default function CardDash() {
   const { isDarkMode } = useTheme(); 
@@ -30,6 +31,10 @@ export default function CardDash() {
             </div>
           </div>
           <FiltroComTabela />
+        </div>
+
+        <div className="w-full mb-2">
+          <StatsDashboard />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -59,7 +64,7 @@ export default function CardDash() {
                 isDarkMode ? "dark-text" : "text-gray-700"
               }`}
             >
-              Distribuição de Status do Solo
+              Radar de Umidade (Mês Atual)
             </h3>
             <CardRadar />
           </div>

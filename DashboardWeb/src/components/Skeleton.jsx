@@ -1,3 +1,5 @@
+
+
 export function DashboardSkeleton() {
     return (
       <div className="p-4 animate-pulse">
