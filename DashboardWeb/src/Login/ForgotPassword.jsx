@@ -20,7 +20,7 @@ export default function ForgotPassword() {
 
     try {
       setLoading(true);
-      const res = await fetch("http://localhost:5000/api/auth/forgot-password", {
+      const res = await fetch("https://back-end-pi-27ls.onrender.com/api/auth/forgot-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: email.trim().toLowerCase() }),

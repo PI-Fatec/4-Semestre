@@ -14,7 +14,7 @@ const FiltroComTabela = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/sensor/stats");
+        const response = await axios.get("https://back-end-pi-27ls.onrender.com/api/sensor/stats");
         setStats({
           mean: response.data.mean,
           median: response.data.median,

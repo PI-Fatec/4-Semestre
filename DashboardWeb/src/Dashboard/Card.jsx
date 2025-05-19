@@ -31,7 +31,7 @@ const StatsDashboard = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get("http://localhost:5000/api/sensor/stats");
+      const res = await axios.get("https://back-end-pi-27ls.onrender.com/api/sensor/stats");
       setStats(res.data);
     };
     fetchData();

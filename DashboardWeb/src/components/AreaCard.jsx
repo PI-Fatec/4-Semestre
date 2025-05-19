@@ -33,7 +33,7 @@ const AreaCard = () => {
     const fetchAreaData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/sensor/stats"
+          "https://back-end-pi-27ls.onrender.com/api/sensor/stats"
         );
         const latestData = response.data.latest_data;
 

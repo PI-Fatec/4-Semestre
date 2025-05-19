@@ -14,7 +14,7 @@ const CardGraficoPizza = () => {
   useEffect(() => {
     const fetchStatusData = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/sensor/stats");
+        const response = await axios.get("https://back-end-pi-27ls.onrender.com/api/sensor/stats");
         const latestData = response.data.latest_data;
 
         const statusCounts = { Crítico: 0, Baixo: 0, Médio: 0, Bom: 0, Sobrecarregado: 0 };

@@ -17,7 +17,7 @@ const PostConfig = () => {
 
     const toastId = toast.loading('Atualizando configuração...');
     try {
-      const res = await axios.post('http://localhost:5000/api/sensor/intervalo', {
+      const res = await axios.post('https://back-end-pi-27ls.onrender.com/api/sensor/intervalo', {
         intervalo: Number(intervalo)
       });
       toast.update(toastId, {
